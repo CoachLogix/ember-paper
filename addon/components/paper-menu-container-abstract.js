@@ -56,7 +56,8 @@ export default Ember.Component.extend({
     let _self = this;
     return new Ember.RSVP.Promise(function(resolve/*, reject*/) {
       _self.get('transitionEvents').addEndEventListener(_self.get('element'), resolve);
-      _self.$().removeClass('md-active').addClass('md-leave');
+      _self.$().addClass('md-leave');
+      // _self.$().removeClass('md-active')
     });
   },
 
