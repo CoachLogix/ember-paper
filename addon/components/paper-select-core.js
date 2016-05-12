@@ -40,9 +40,22 @@ export default PaperMenuAbstract.extend({
     return !!this.get('disabled');
   }),
 
-  label: Ember.computed('value', 'itemLabelCallback', function() {
+  labelPathValue: null,
+
+  setupLabelPath: function() {
+    if (!this.get('labelPath')) {
+      return;
+    }
+
+    Ember.defineProperty(this, 'labelPathValue', Ember.computed.alias(this.get('labelPath')));
+  }.on('init'),
+
+  label: Ember.computed('value', 'itemLabelCallback', 'labelPathValue', function() {
     if (!this.get('value')) {
       return null;
+    }
+    if (this.get('labelPathValue')) {
+      return this.get('labelPathValue');
     }
     if (this.get('itemLabelCallback')) {
       return this.get('itemLabelCallback').call(this, this.get('value'));
