@@ -35,6 +35,8 @@ export default Ember.Component.extend(RippleMixin, ProxyMixin, {
     return this.get('proxiedComponents.length') || this.get('onClick');
   }),
 
+  treatIconButtonAsSecondary: true,
+
   didInsertElement() {
     this._super(...arguments);
 
@@ -58,7 +60,9 @@ export default Ember.Component.extend(RippleMixin, ProxyMixin, {
     // Don't allow proxied component to bubble click event to parent list-item
     this.get('proxiedComponents').setEach('bubbles', false);
 
-    this.$('.md-icon-button').addClass('md-secondary-container');
+    if (this.get('treatIconButtonAsSecondary')) {
+      this.$('.md-icon-button').addClass('md-secondary-container');  
+    }    
 
     if (this.get('hasProxiedComponent')) {
       proxies.forEach(function(view) {
