@@ -48,7 +48,7 @@
 @import './angular-material/core/style/structure';
 @import './angular-material/core/style/typography';
 @import './angular-material/core/services/layout/layout.attributes';
-@import './angular-material/core/services/layout/layout.scss';
+@import './angular-material/core/services/layout/layout';
 
 // Component styles
 @import './angular-material/components/content/content';
@@ -120,3 +120,6 @@
 
 // Backports of features from future versions of angular-material-source to this version
 @import './backports/paper-input';
+// Mixins needs to be imported before paper-card
+@import './backports/mixins';
+@import './backports/paper-card';
